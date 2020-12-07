@@ -24,11 +24,10 @@ public class WordPusher {
         );
     }
 
-    public String push() {
+    public WordPusher push() {
         if (direction.toUpperCase().equals("L")) {
             repeatCount *= -1;
         }
-
 
         for (int i = 0; repeatCount < i; i--) {
             words.offerLast(words.pollFirst());
@@ -37,7 +36,11 @@ public class WordPusher {
         for (int i = 0; i < repeatCount; i++) {
             words.offerFirst(words.pollLast());
         }
+        return this;
+    }
 
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 
         for (String s : words) {
