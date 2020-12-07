@@ -5,29 +5,42 @@ import java.util.Arrays;
 import java.util.Deque;
 
 public class WordPusher {
-    public String push(String input) {
+    private Deque<String> words;
+    private int repeatCount;
+    private String direction;
+
+    private WordPusher(Deque<String> words, int repeatCount, String direction) {
+        this.words = words;
+        this.repeatCount = repeatCount;
+        this.direction = direction;
+    }
+
+    public static WordPusher create(String input) {
         String[] inputs = input.split(" ");
-        String str = inputs[0];
-        int time = Integer.parseInt(inputs[1]);
-        String direction = inputs[2];
+        return new WordPusher(
+                new ArrayDeque<>(Arrays.asList(inputs[0].split(""))),
+                Integer.parseInt(inputs[1]),
+                inputs[2]
+        );
+    }
 
+    public String push() {
         if (direction.toUpperCase().equals("L")) {
-            time *= -1;
+            repeatCount *= -1;
         }
 
-        Deque<String> deque = new ArrayDeque<>(Arrays.asList(str.split("")));
 
-        for (int i = 0; time < i; i--) {
-            deque.offerLast(deque.pollFirst());
+        for (int i = 0; repeatCount < i; i--) {
+            words.offerLast(words.pollFirst());
         }
 
-        for (int i = 0; i < time; i++) {
-            deque.offerFirst(deque.pollLast());
+        for (int i = 0; i < repeatCount; i++) {
+            words.offerFirst(words.pollLast());
         }
 
         StringBuilder sb = new StringBuilder();
 
-        for (String s : deque) {
+        for (String s : words) {
             sb.append(s);
         }
 
