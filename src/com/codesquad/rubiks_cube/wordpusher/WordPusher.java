@@ -26,17 +26,25 @@ public class WordPusher {
 
     public WordPusher push() {
         if (direction.toUpperCase().equals("L")) {
-            repeatCount *= -1;
+            repeatCount = -repeatCount;
         }
 
+        pushLeft(repeatCount);
+        pushRight(repeatCount);
+
+        return this;
+    }
+
+    private void pushLeft(int repeatCount) {
         for (int i = 0; repeatCount < i; i--) {
             words.offerLast(words.pollFirst());
         }
+    }
 
+    private void pushRight(int repeatCount) {
         for (int i = 0; i < repeatCount; i++) {
             words.offerFirst(words.pollLast());
         }
-        return this;
     }
 
     @Override
