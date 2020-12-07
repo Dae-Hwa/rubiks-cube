@@ -6,14 +6,11 @@ import java.util.Deque;
 import java.util.List;
 
 public class WordPusher {
-    private static final String DIRECTION_LEFT = "L";
-    private static final String DIRECTION_RIGHT = "R";
-
     private Deque<String> words;
     private int repeatCount;
-    private String direction;
+    private Direction direction;
 
-    private WordPusher(Deque<String> words, int repeatCount, String direction) {
+    private WordPusher(Deque<String> words, int repeatCount, Direction direction) {
         this.words = words;
         this.repeatCount = repeatCount;
         this.direction = direction;
@@ -24,35 +21,24 @@ public class WordPusher {
 
         List<String> words = Arrays.asList(inputs[0].split(""));
         int repeatCount = Integer.parseInt(inputs[1]);
-        String direction = inputs[2].toUpperCase();
-
-        if (repeatCount < 0) {
-            repeatCount = -repeatCount;
-            direction = getReversedDirection(direction);
-        }
+        Direction direction = Direction.getInstanceBy(inputs[2], repeatCount);
 
         return new WordPusher(
                 new ArrayDeque<>(words),
-                repeatCount,
+                Math.abs(repeatCount), // 부호에 따라 direction 결정되어 있으므로 절대값 사용
                 direction
         );
     }
 
-    private static String getReversedDirection(String direction) {
-        if (direction.equals(DIRECTION_LEFT)) {
-            return DIRECTION_RIGHT;
-        }
-        return DIRECTION_LEFT;
-    }
-
-
     public WordPusher push() {
-        if (direction.toUpperCase().equals(DIRECTION_LEFT)) {
+        if (direction.equals(Direction.LEFT)) {
             pushLeft(repeatCount);
+
             return this;
         }
 
         pushRight(repeatCount);
+
         return this;
     }
 
