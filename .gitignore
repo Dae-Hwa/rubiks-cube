@@ -1,0 +1,9 @@
+# Intellij Files
+.idea
+*.iml
+
+# Compiled class file
+*.class
+
+# Test sources
+test/*
