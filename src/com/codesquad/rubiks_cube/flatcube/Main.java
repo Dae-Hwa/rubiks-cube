@@ -10,18 +10,17 @@ public class Main {
         String mainBlock = "C";
         FlatCube flatCube = new FlatCube(blocks, mainBlock);
 
-        System.out.print(flatCube.toString());
+        FlatCubePrinter.printFlatCube(flatCube);
 
         boolean isEnd = false;
 
         while (!isEnd) {
-            System.out.println();
-            System.out.print("CUBE> ");
+            FlatCubePrinter.printPrompt();
 
             isEnd = executeCommands(flatCube, getInput());
         }
 
-        System.out.println("Bye~");
+        FlatCubePrinter.printEndMessage();
     }
 
     public static boolean executeCommands(FlatCube flatCube, String commands) {
@@ -30,9 +29,8 @@ public class Main {
                 return true;
             }
 
-            System.out.println();
-            System.out.println(command);
-            System.out.print(flatCube.push(command).toString());
+            FlatCubePrinter.printCommand(command);
+            FlatCubePrinter.printFlatCube(flatCube);
         }
 
         return false;
