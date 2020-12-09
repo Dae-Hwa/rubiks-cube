@@ -30,7 +30,7 @@ public class Main {
             }
 
             FlatCubePrinter.printCommand(command);
-            FlatCubePrinter.printFlatCube(flatCube);
+            FlatCubePrinter.printFlatCube(flatCube.push(command));
         }
 
         return false;
