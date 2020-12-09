@@ -17,14 +17,14 @@ public class Main {
         while (!isEnd) {
             FlatCubePrinter.printPrompt();
 
-            isEnd = executeCommands(flatCube, getInput());
+            isEnd = executeCommands(flatCube, getInput().split(""));
         }
 
         FlatCubePrinter.printEndMessage();
     }
 
-    public static boolean executeCommands(FlatCube flatCube, String commands) {
-        for (String command : commands.split("")) {
+    public static boolean executeCommands(FlatCube flatCube, String[] commands) {
+        for (String command : commands) {
             if (command.equals("Q")) {
                 return true;
             }
