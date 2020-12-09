@@ -22,88 +22,23 @@ public class FlatCube {
     }
 
     public FlatCube push(String command) {
-        int startPoint;
-
-        switch (command) {
-            case "U":
-                startPoint = 0;
-
-                push(startPoint, Direction.LEFT);
-
-                break;
-
-            case "U'":
-                startPoint = 0;
-
-                push(startPoint, Direction.RIGHT);
-
-                break;
-
-            case "R":
-                startPoint = 2;
-
-                push(startPoint, Direction.LEFT);
-
-                break;
-
-            case "R'":
-                startPoint = 2;
-
-                push(startPoint, Direction.RIGHT);
-
-                break;
-
-            case "B":
-                startPoint = 4;
-
-                push(startPoint, Direction.LEFT);
-
-                break;
-
-            case "B'":
-                startPoint = 4;
-
-                push(startPoint, Direction.RIGHT);
-
-                break;
-
-            case "L":
-                startPoint = 6;
-
-                push(startPoint, Direction.LEFT);
-
-                break;
-
-            case "L'":
-                startPoint = 6;
-
-                push(startPoint, Direction.RIGHT);
-
-                break;
-            default:
-                break;
-        }
-
+        push(CubeCommand.getInstanceBy(command));
 
         return this;
     }
 
-    private void push(int startPoint, Direction direction) {
+    private void push(CubeCommand cubeCommand) {
         Deque<String> deque = new ArrayDeque<>();
 
         for (int i = 0; i < CUBE_SIZE; i++) {
-            deque.offerLast(blocks[(i + startPoint) % blocks.length]);
+            deque.offerLast(blocks[(i + cubeCommand.getStartPosition()) % blocks.length]);
         }
 
-        if (direction == Direction.LEFT) {
-            deque.offerLast(deque.pollFirst());
-        } else {
-            deque.offerFirst(deque.pollLast());
-        }
-
+        Direction direction = cubeCommand.getDirection();
+        deque = new ArrayDeque<>(direction.push(deque));
 
         for (int i = 0; i < CUBE_SIZE; i++) {
-            blocks[(i + startPoint) % blocks.length] = deque.pollFirst();
+            blocks[(i + cubeCommand.getStartPosition()) % blocks.length] = deque.pollFirst();
         }
     }
 
