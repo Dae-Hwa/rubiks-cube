@@ -1,5 +1,6 @@
 package com.codesquad.rubiks_cube.wordpusher;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class WordPusher {
@@ -22,27 +23,11 @@ public class WordPusher {
     }
 
     public WordPusher push() {
-        if (direction.equals(Direction.LEFT)) {
-            pushLeft(repeatCount);
-
-            return this;
+        for (int i = 0; i < repeatCount; i++) {
+            words = new ArrayDeque<>(direction.push(words));
         }
-
-        pushRight(repeatCount);
 
         return this;
-    }
-
-    private void pushLeft(int repeatCount) {
-        for (int i = 0; i < repeatCount; i++) {
-            words.offerLast(words.pollFirst());
-        }
-    }
-
-    private void pushRight(int repeatCount) {
-        for (int i = 0; i < repeatCount; i++) {
-            words.offerFirst(words.pollLast());
-        }
     }
 
     @Override
