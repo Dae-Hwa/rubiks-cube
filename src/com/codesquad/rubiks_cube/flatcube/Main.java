@@ -12,9 +12,7 @@ public class Main {
 
         FlatCubePrinter.printFlatCube(flatCube);
 
-        boolean isEnd = false;
-
-        while (!isEnd) {
+        for (boolean isEnd = false; !isEnd; ) {
             FlatCubePrinter.printPrompt();
 
             isEnd = executeCommands(flatCube, getInput().split(""));
