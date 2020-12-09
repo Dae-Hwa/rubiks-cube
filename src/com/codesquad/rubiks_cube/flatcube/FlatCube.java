@@ -79,4 +79,21 @@ public class FlatCube {
 
         return blocks;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        String[][] cube = toArray();
+
+        for (String[] row : cube) {
+            for (String column : row) {
+                sb.append(column)
+                        .append(" ");
+            }
+            sb.append(System.lineSeparator());
+        }
+
+        return sb.toString();
+    }
 }
