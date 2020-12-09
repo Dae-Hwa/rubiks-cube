@@ -42,6 +42,14 @@ public class FlatCube {
         }
     }
 
+    /**
+     * 일차원으로 늘어트려져있는 큐브를 2차원으로 변경시킨다.
+     *
+     * @return 아래와 같은 형태가 된다. <br/>
+     * [blocks[0]][blocks[1]][blocks[2]]<br/>
+     * [blocks[7]][mainBlock][blocks[3]]<br/>
+     * [blocks[6]][blocks[5]][blocks[4]]
+     */
     public String[][] toArray() {
         String[][] blocks = new String[CUBE_SIZE][CUBE_SIZE];
 
@@ -52,12 +60,14 @@ public class FlatCube {
 
         int range = CUBE_SIZE;
         for (int i = -1; i < this.blocks.length - 1; direction = -direction) {
+            // 가로줄 채우기
             for (int j = 0; j < range; j++) {
                 i++;
                 column += direction;
                 blocks[row][column] = this.blocks[i];
             }
             --range;
+            // 세로줄 채우기
             for (int j = 0; j < range; j++) {
                 i++;
                 row += direction;
