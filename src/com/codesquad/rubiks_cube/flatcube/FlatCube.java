@@ -2,6 +2,8 @@ package com.codesquad.rubiks_cube.flatcube;
 
 import com.codesquad.rubiks_cube.rubikscube.LinkedCubes;
 import com.codesquad.rubiks_cube.wordpusher.Direction;
+import com.codesquad.rubiks_cube.wordpusher.WordPusher;
+import com.codesquad.rubiks_cube.wordpusher.WordPusherDTO;
 
 import java.util.*;
 
@@ -39,13 +41,35 @@ public class FlatCube {
     public FlatCube rotateClockWise() {
         linkedCubes.rotateClockWise();
 
-        // TODO: 직접 옆으로 밀어내는거 추가해아함(push)
+        Deque<String> pushedBlocks = WordPusher.create(new WordPusherDTO(
+                new ArrayDeque<>(Arrays.asList(blocks)),
+                CUBE_SIZE - 1,
+                Direction.RIGHT
+        )).push()
+                .toDTO()
+                .getWords();
+
+        for (int i = 0; i < blocks.length; i++) {
+            blocks[i] = pushedBlocks.pollFirst();
+        }
 
         return this;
     }
 
     public FlatCube rotateCounterClockWise() {
         linkedCubes.rotateCounterClockWise();
+
+        Deque<String> pushedBlocks = WordPusher.create(new WordPusherDTO(
+                new ArrayDeque<>(Arrays.asList(blocks)),
+                CUBE_SIZE - 1,
+                Direction.LEFT
+        )).push()
+                .toDTO()
+                .getWords();
+
+        for (int i = 0; i < blocks.length; i++) {
+            blocks[i] = pushedBlocks.pollFirst();
+        }
 
         return this;
     }
