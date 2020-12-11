@@ -22,7 +22,7 @@ public class Main {
             isEnd = executeCommands(rubiksCube, getInput().split(""));
         }
 
-        FlatCubePrinter.printEndMessage();
+        RubiksCubePrinter.printEndMessage(rubiksCube.toDTO().getRotateCount());
     }
 
     public static boolean executeCommands(RubiksCube rubiksCube, String[] commands) {
