@@ -10,7 +10,7 @@ public class Main {
         String mainBlock = "C";
         FlatCube flatCube = new FlatCube(blocks, mainBlock);
 
-        FlatCubePrinter.printFlatCube(flatCube);
+        FlatCubePrinter.printFlatCube(flatCube.toDTO());
 
         for (boolean isEnd = false; !isEnd; ) {
             FlatCubePrinter.printPrompt();
@@ -28,7 +28,7 @@ public class Main {
             }
 
             FlatCubePrinter.printCommand(command);
-            FlatCubePrinter.printFlatCube(flatCube.push(command));
+            FlatCubePrinter.printFlatCube(flatCube.push(command).toDTO());
         }
 
         return false;

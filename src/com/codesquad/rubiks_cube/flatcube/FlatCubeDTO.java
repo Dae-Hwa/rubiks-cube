@@ -1,5 +1,7 @@
 package com.codesquad.rubiks_cube.flatcube;
 
+import java.util.Arrays;
+
 public class FlatCubeDTO {
     private final String[] blocks;
     private final String mainBlock;
@@ -45,5 +47,13 @@ public class FlatCubeDTO {
         blocks[FlatCube.CUBE_SIZE / 2][FlatCube.CUBE_SIZE / 2] = mainBlock;
 
         return blocks;
+    }
+
+    @Override
+    public String toString() {
+        return "FlatCubeDTO{" +
+                "blocks=" + Arrays.toString(blocks) +
+                ", mainBlock='" + mainBlock + '\'' +
+                '}';
     }
 }
