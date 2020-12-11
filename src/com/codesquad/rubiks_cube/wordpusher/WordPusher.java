@@ -30,6 +30,10 @@ public class WordPusher {
         return this;
     }
 
+    public WordPusherDTO toDTO() {
+        return new WordPusherDTO(new ArrayDeque<>(words), repeatCount, direction);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

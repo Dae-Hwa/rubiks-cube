@@ -10,7 +10,7 @@ public class WordPusherDTO {
     private int repeatCount;
     private Direction direction;
 
-    private WordPusherDTO(Deque<String> words, int repeatCount, Direction direction) {
+    public WordPusherDTO(Deque<String> words, int repeatCount, Direction direction) {
         this.words = words;
         this.repeatCount = repeatCount;
         this.direction = direction;
