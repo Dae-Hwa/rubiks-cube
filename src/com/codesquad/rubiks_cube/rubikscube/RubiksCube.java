@@ -10,6 +10,7 @@ public class RubiksCube {
     private FlatCube top;
     private FlatCube bottom;
     private List<FlatCube> middles;
+    private int rotateCount;
 
     public RubiksCube(FlatCube top, FlatCube bottom, List<FlatCube> middles) {
         this.top = top;
@@ -72,6 +73,8 @@ public class RubiksCube {
     }
 
     public RubiksCube rotate(String command) {
+        rotateCount++;
+
         switch (command) {
             case "F":
                 middles.get(1).rotateClockWise();
@@ -133,7 +136,7 @@ public class RubiksCube {
                 .map(FlatCube::toDTO)
                 .collect(Collectors.toList());
 
-        return new RubiksCubeDTO(top.toDTO(), bottom.toDTO(), middles);
+        return new RubiksCubeDTO(top.toDTO(), bottom.toDTO(), middles, rotateCount);
     }
 
     @Override
