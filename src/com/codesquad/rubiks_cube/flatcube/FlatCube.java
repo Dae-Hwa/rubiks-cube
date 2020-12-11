@@ -28,18 +28,52 @@ public class FlatCube {
         return new FlatCube(blocks, color);
     }
 
-    public FlatCube push(String command) {
-        push(CubeCommand.getInstanceBy(command));
-
-        return this;
-    }
-
     public LinkedCubes getLinkedCubes() {
         return linkedCubes;
     }
 
     public void setLinkedCubes(LinkedCubes linkedCubes) {
         this.linkedCubes = linkedCubes;
+    }
+
+    public FlatCube rotateClockWise() {
+        linkedCubes.rotateClockWise();
+
+        // TODO: 직접 옆으로 밀어내는거 추가해아함(push)
+
+        return this;
+    }
+
+    public FlatCube rotateCounterClockWise() {
+        linkedCubes.rotateCounterClockWise();
+
+        return this;
+    }
+
+    public String[] getBlocksStartAt(int index) {
+        String[] blocks = new String[CUBE_SIZE];
+
+        for (int i = 0; i < CUBE_SIZE; i++) {
+            blocks[i] = this.blocks[(i + index) % this.blocks.length];
+        }
+
+        return blocks;
+    }
+
+    public FlatCube setBlocksStartAt(int index, String[] blocks) {
+        for (int i = 0; i < CUBE_SIZE; i++) {
+            this.blocks[(i + index) % this.blocks.length] = blocks[i];
+        }
+
+        return this;
+    }
+
+    public FlatCube push(String command) {
+        push(CubeCommand.getInstanceBy(command));
+
+        linkedCubes.getLeft();
+
+        return this;
     }
 
     private void push(CubeCommand cubeCommand) {

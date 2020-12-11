@@ -69,8 +69,61 @@ public class RubiksCube {
         }
     }
 
-    public void rotate(String command) {
+    public RubiksCube rotate(String command) {
+        switch (command) {
+            case "F":
+                middles.get(1).rotateClockWise();
+                break;
 
+            case "F'":
+                middles.get(1).rotateCounterClockWise();
+                break;
+
+            case "R":
+                middles.get(2).rotateClockWise();
+                break;
+
+            case "R'":
+                middles.get(2).rotateCounterClockWise();
+                break;
+
+            case "U":
+                top.rotateClockWise();
+                break;
+
+            case "U'":
+                top.rotateCounterClockWise();
+                break;
+
+            case "B":
+                middles.get(3).rotateClockWise();
+                break;
+
+            case "B'":
+                middles.get(3).rotateCounterClockWise();
+                break;
+
+            case "L":
+                middles.get(0).rotateClockWise();
+                break;
+
+            case "L'":
+                middles.get(0).rotateCounterClockWise();
+                break;
+
+            case "D":
+                bottom.rotateClockWise();
+                break;
+
+            case "D'":
+                bottom.rotateCounterClockWise();
+                break;
+
+            default:
+                break;
+        }
+
+        return this;
     }
 
     @Override

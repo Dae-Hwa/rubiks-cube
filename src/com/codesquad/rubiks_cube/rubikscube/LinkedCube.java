@@ -10,4 +10,14 @@ public class LinkedCube {
         this.flatCube = flatCube;
         this.startPosition = startPosition;
     }
+
+    // 여기서 블록 집어넣기
+    public String[] getBlocksStartAt(int index) {
+        return flatCube.getBlocksStartAt(index + startPosition);
+    }
+
+    public LinkedCube setBlocksStartAt(int index, String[] blocks) {
+        flatCube.setBlocksStartAt(index + startPosition, blocks);
+        return this;
+    }
 }
