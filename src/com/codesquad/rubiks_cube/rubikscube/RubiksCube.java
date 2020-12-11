@@ -1,8 +1,10 @@
 package com.codesquad.rubiks_cube.rubikscube;
 
 import com.codesquad.rubiks_cube.flatcube.FlatCube;
+import com.codesquad.rubiks_cube.flatcube.FlatCubeDTO;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class RubiksCube {
     private FlatCube top;
@@ -37,10 +39,10 @@ public class RubiksCube {
     private void linkTop() {
         LinkedCubes linkedCubes = new LinkedCubes();
 
-        linkedCubes.setTop(middles.get(1), 4);
-        linkedCubes.setLeft(middles.get(2), 6);
-        linkedCubes.setRight(middles.get(0), 2);
-        linkedCubes.setBottom(middles.get(3), 0);
+        linkedCubes.setTop(middles.get(1), 4)
+                .setLeft(middles.get(2), 6)
+                .setRight(middles.get(0), 2)
+                .setBottom(middles.get(3), 0);
 
         top.setLinkedCubes(linkedCubes);
     }
@@ -48,10 +50,10 @@ public class RubiksCube {
     private void linkBottom() {
         LinkedCubes linkedCubes = new LinkedCubes();
 
-        linkedCubes.setTop(middles.get(0), 0);
-        linkedCubes.setLeft(middles.get(3), 2);
-        linkedCubes.setRight(middles.get(1), 6);
-        linkedCubes.setBottom(middles.get(2), 4);
+        linkedCubes.setTop(middles.get(0), 0)
+                .setLeft(middles.get(3), 2)
+                .setRight(middles.get(1), 6)
+                .setBottom(middles.get(2), 4);
 
         bottom.setLinkedCubes(linkedCubes);
     }
@@ -64,8 +66,8 @@ public class RubiksCube {
                     .getLinkedCubes()
                     .setLeft(middles.get((i + n - 1) % n), 0)
                     .setRight(middles.get((i + 1) % n), 0)
-                    .setTop(top, 6 - i * 2)
-                    .setBottom(bottom, i * 2);
+                    .setTop(top, (2 - i * 2) % 8)
+                    .setBottom(bottom, (6 + i * 2) % 8);
         }
     }
 
