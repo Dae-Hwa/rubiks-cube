@@ -126,6 +126,14 @@ public class RubiksCube {
         return this;
     }
 
+    public RubiksCubeDTO toDTO() {
+        List<FlatCubeDTO> middles = this.middles.stream()
+                .map(FlatCube::toDTO)
+                .collect(Collectors.toList());
+
+        return new RubiksCubeDTO(top.toDTO(), bottom.toDTO(), middles);
+    }
+
     @Override
     public String toString() {
         return "RubiksCube{" +
