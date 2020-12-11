@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.Queue;
 
 public class Main {
-    private static final String SPACE_TOP_AND_BOTTOM = "                ";
-
     public static void main(String[] args) {
 
         RubiksCube rubiksCube = RubiksCube.create();
+
+        RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO());
 
         for (boolean isEnd = false; !isEnd; ) {
             FlatCubePrinter.printPrompt();
@@ -53,11 +53,7 @@ public class Main {
                 rubiksCube.rotate(command);
 
                 FlatCubePrinter.printCommand(command);
-                FlatCubePrinter.printFlatCube(rubiksCube.toDTO().getTop(), SPACE_TOP_AND_BOTTOM, "");
-                System.out.println();
-                FlatCubePrinter.printFlatCubes(rubiksCube.toDTO().getMiddles());
-                FlatCubePrinter.printFlatCube(rubiksCube.toDTO().getBottom(), SPACE_TOP_AND_BOTTOM, "");
-                System.out.println();
+                RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO());
             }
         }
 
