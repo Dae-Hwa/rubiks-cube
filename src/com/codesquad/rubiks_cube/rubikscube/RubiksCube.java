@@ -69,6 +69,10 @@ public class RubiksCube {
         }
     }
 
+    public void rotate(String command) {
+
+    }
+
     @Override
     public String toString() {
         return "RubiksCube{" +
@@ -76,5 +80,20 @@ public class RubiksCube {
                 ", bottom=" + bottom +
                 ", middles=" + middles +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RubiksCube that = (RubiksCube) o;
+        return Objects.equals(top, that.top) &&
+                Objects.equals(bottom, that.bottom) &&
+                Objects.equals(middles, that.middles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(top, bottom, middles);
     }
 }

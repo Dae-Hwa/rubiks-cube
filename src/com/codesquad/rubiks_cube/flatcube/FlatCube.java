@@ -111,4 +111,20 @@ public class FlatCube {
 
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FlatCube flatCube = (FlatCube) o;
+        return Arrays.equals(blocks, flatCube.blocks) &&
+                Objects.equals(mainBlock, flatCube.mainBlock);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(mainBlock);
+        result = 31 * result + Arrays.hashCode(blocks);
+        return result;
+    }
 }
