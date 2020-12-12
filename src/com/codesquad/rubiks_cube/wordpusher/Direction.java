@@ -34,7 +34,7 @@ public enum Direction {
     }
 
     private static Direction getInstanceBy(String direction) {
-        if (direction.toUpperCase().equals("L")) {
+        if (direction.equalsIgnoreCase("L")) {
             return LEFT;
         }
 
