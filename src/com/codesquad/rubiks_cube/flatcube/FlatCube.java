@@ -26,6 +26,10 @@ public class FlatCube {
         this.mainBlock = mainBlock;
     }
 
+    public static FlatCube create(FlatCubeDTO flatCubeDTO) {
+        return new FlatCube(flatCubeDTO.getBlocks(), flatCubeDTO.getMainBlock());
+    }
+
     public static FlatCube create(String color) {
         String[] blocks = new String[Double.valueOf(Math.pow(CUBE_SIZE, 2)).intValue() - 1];
         Arrays.fill(blocks, color);

@@ -11,6 +11,14 @@ public class FlatCubeDTO {
         this.mainBlock = mainBlock;
     }
 
+    public String[] getBlocks() {
+        return blocks.clone();
+    }
+
+    public String getMainBlock() {
+        return mainBlock;
+    }
+
     /**
      * 일차원으로 늘어트려져있는 큐브를 2차원으로 변경시킨다.
      *
