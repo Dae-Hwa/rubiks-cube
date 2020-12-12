@@ -63,61 +63,28 @@ public class RubiksCubeLayers {
         }
     }
 
-    public RubiksCubeLayers rotate(String command) {
-        switch (command) {
-            case "F":
-                middles.get(MIDDLES_FRONT_INDEX).rotateClockWise();
-                break;
+    public FlatCube getTop() {
+        return top;
+    }
 
-            case "F'":
-                middles.get(MIDDLES_FRONT_INDEX).rotateCounterClockWise();
-                break;
+    public FlatCube getBottom() {
+        return bottom;
+    }
 
-            case "R":
-                middles.get(MIDDLES_RIGHT_INDEX).rotateClockWise();
-                break;
+    public FlatCube getLeft() {
+        return middles.get(MIDDLES_LEFT_INDEX);
+    }
 
-            case "R'":
-                middles.get(MIDDLES_RIGHT_INDEX).rotateCounterClockWise();
-                break;
+    public FlatCube getFront() {
+        return middles.get(MIDDLES_FRONT_INDEX);
+    }
 
-            case "U":
-                top.rotateClockWise();
-                break;
+    public FlatCube getRight() {
+        return middles.get(MIDDLES_RIGHT_INDEX);
+    }
 
-            case "U'":
-                top.rotateCounterClockWise();
-                break;
-
-            case "B":
-                middles.get(MIDDLES_BACK_INDEX).rotateClockWise();
-                break;
-
-            case "B'":
-                middles.get(MIDDLES_BACK_INDEX).rotateCounterClockWise();
-                break;
-
-            case "L":
-                middles.get(MIDDLES_LEFT_INDEX).rotateClockWise();
-                break;
-
-            case "L'":
-                middles.get(MIDDLES_LEFT_INDEX).rotateCounterClockWise();
-                break;
-
-            case "D":
-                bottom.rotateClockWise();
-                break;
-
-            case "D'":
-                bottom.rotateCounterClockWise();
-                break;
-
-            default:
-                break;
-        }
-
-        return this;
+    public FlatCube getBack() {
+        return middles.get(MIDDLES_BACK_INDEX);
     }
 
     public RubiksCubeLayersDTO toDTO() {

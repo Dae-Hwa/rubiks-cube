@@ -30,7 +30,8 @@ public class RubiksCube {
     public RubiksCube rotate(String command) {
         rotateCount++;
 
-        rubiksCubeLayers.rotate(command);
+        RubiksCubeCommand.getInstanceBy(command)
+                .rotate(rubiksCubeLayers);
 
         return this;
     }
