@@ -9,6 +9,8 @@ import java.util.*;
 
 public class FlatCube {
     public static final int CUBE_SIZE = 3;
+    public static final int BLOCKS_SIZE = 8;
+
     /**
      * 큐브를 달팽이집 형식으로 표현
      * [blocks[0]][blocks[1]][blocks[2]]

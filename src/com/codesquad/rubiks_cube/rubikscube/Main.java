@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Queue;
 
 public class Main {
+    private static final int DEFAULT_REPEAT_NUMBER = 1;
+
     public static void main(String[] args) {
 
         RubiksCube rubiksCube = RubiksCube.create();
@@ -46,7 +48,7 @@ public class Main {
             }
 
             if (repeatNumber.length() == 0) {
-                repeatNumber.append("1");
+                repeatNumber.append(DEFAULT_REPEAT_NUMBER);
             }
 
             for (int i = 0; i < Integer.parseInt(repeatNumber.toString()); i++) {

@@ -1,5 +1,6 @@
 package com.codesquad.rubiks_cube.rubikscube;
 
+import com.codesquad.rubiks_cube.flatcube.BlockPosition;
 import com.codesquad.rubiks_cube.flatcube.FlatCube;
 import com.codesquad.rubiks_cube.flatcube.FlatCubeDTO;
 
@@ -7,6 +8,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RubiksCube {
+    private static final int MIDDLES_LEFT_INDEX = 0;
+    private static final int MIDDLES_FRONT_INDEX = 1;
+    private static final int MIDDLES_RIGHT_INDEX = 2;
+    private static final int MIDDLES_BACK_INDEX = 3;
+
     private FlatCube top;
     private FlatCube bottom;
     private List<FlatCube> middles;
@@ -40,10 +46,10 @@ public class RubiksCube {
     private void linkTop() {
         LinkedCubes linkedCubes = new LinkedCubes();
 
-        linkedCubes.setTop(middles.get(1), 4)
-                .setLeft(middles.get(2), 6)
-                .setRight(middles.get(0), 2)
-                .setBottom(middles.get(3), 0);
+        linkedCubes.setTop(middles.get(MIDDLES_FRONT_INDEX), BlockPosition.BOTTOM_RIGHT.VALUE)
+                .setLeft(middles.get(MIDDLES_RIGHT_INDEX), BlockPosition.BOTTOM_LEFT.VALUE)
+                .setRight(middles.get(MIDDLES_LEFT_INDEX), BlockPosition.TOP_RIGHT.VALUE)
+                .setBottom(middles.get(MIDDLES_BACK_INDEX), BlockPosition.TOP_LEFT.VALUE);
 
         top.setLinkedCubes(linkedCubes);
     }
@@ -51,10 +57,10 @@ public class RubiksCube {
     private void linkBottom() {
         LinkedCubes linkedCubes = new LinkedCubes();
 
-        linkedCubes.setTop(middles.get(0), 0)
-                .setLeft(middles.get(3), 2)
-                .setRight(middles.get(1), 6)
-                .setBottom(middles.get(2), 4);
+        linkedCubes.setTop(middles.get(MIDDLES_LEFT_INDEX), BlockPosition.TOP_LEFT.VALUE)
+                .setLeft(middles.get(MIDDLES_BACK_INDEX), BlockPosition.TOP_RIGHT.VALUE)
+                .setRight(middles.get(MIDDLES_FRONT_INDEX), BlockPosition.BOTTOM_LEFT.VALUE)
+                .setBottom(middles.get(MIDDLES_RIGHT_INDEX), BlockPosition.BOTTOM_RIGHT.VALUE);
 
         bottom.setLinkedCubes(linkedCubes);
     }
@@ -65,10 +71,10 @@ public class RubiksCube {
         for (int i = 0; i < n; i++) {
             middles.get(i)
                     .getLinkedCubes()
-                    .setLeft(middles.get((i + n - 1) % n), 0)
-                    .setRight(middles.get((i + 1) % n), 0)
-                    .setTop(top, (2 - i * 2) % 8)
-                    .setBottom(bottom, (6 + i * 2) % 8);
+                    .setLeft(middles.get((i + n - 1) % n), BlockPosition.TOP_LEFT.VALUE)
+                    .setRight(middles.get((i + 1) % n), BlockPosition.TOP_LEFT.VALUE)
+                    .setTop(top, (BlockPosition.TOP_RIGHT.VALUE - i * 2) % FlatCube.BLOCKS_SIZE)
+                    .setBottom(bottom, (BlockPosition.BOTTOM_LEFT.VALUE + i * 2) % FlatCube.BLOCKS_SIZE);
         }
     }
 
@@ -77,19 +83,19 @@ public class RubiksCube {
 
         switch (command) {
             case "F":
-                middles.get(1).rotateClockWise();
+                middles.get(MIDDLES_FRONT_INDEX).rotateClockWise();
                 break;
 
             case "F'":
-                middles.get(1).rotateCounterClockWise();
+                middles.get(MIDDLES_FRONT_INDEX).rotateCounterClockWise();
                 break;
 
             case "R":
-                middles.get(2).rotateClockWise();
+                middles.get(MIDDLES_RIGHT_INDEX).rotateClockWise();
                 break;
 
             case "R'":
-                middles.get(2).rotateCounterClockWise();
+                middles.get(MIDDLES_RIGHT_INDEX).rotateCounterClockWise();
                 break;
 
             case "U":
@@ -101,19 +107,19 @@ public class RubiksCube {
                 break;
 
             case "B":
-                middles.get(3).rotateClockWise();
+                middles.get(MIDDLES_BACK_INDEX).rotateClockWise();
                 break;
 
             case "B'":
-                middles.get(3).rotateCounterClockWise();
+                middles.get(MIDDLES_BACK_INDEX).rotateCounterClockWise();
                 break;
 
             case "L":
-                middles.get(0).rotateClockWise();
+                middles.get(MIDDLES_LEFT_INDEX).rotateClockWise();
                 break;
 
             case "L'":
-                middles.get(0).rotateCounterClockWise();
+                middles.get(MIDDLES_LEFT_INDEX).rotateCounterClockWise();
                 break;
 
             case "D":
