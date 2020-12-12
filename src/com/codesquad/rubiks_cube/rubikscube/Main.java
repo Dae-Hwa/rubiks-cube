@@ -31,7 +31,7 @@ public class Main {
         );
     }
 
-    public static boolean executeCommands(RubiksCube rubiksCube, String[] commands) {
+    private static void executeCommands(RubiksCube rubiksCube, String[] commands) {
         Queue<String> commandsQueue = new ArrayDeque<>(Arrays.asList(commands));
 
         while (!commandsQueue.isEmpty()) {
@@ -42,15 +42,13 @@ public class Main {
                 rubiksCube.executeCommand(command);
 
                 if (rubiksCube.isEnd() || rubiksCube.isSolved()) {
-                    return true;
+                    return;
                 }
 
                 FlatCubePrinter.printCommand(command);
                 RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO().getRubiksCubeLayersDTO());
             }
         }
-
-        return false;
     }
 
     private static String getCommand(Queue<String> commandsQueue) {
