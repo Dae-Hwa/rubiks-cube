@@ -15,7 +15,7 @@ public class Main {
 
         RubiksCube rubiksCube = RubiksCube.create();
 
-        RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO());
+        RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO().getRubiksCubeLayersDTO());
 
         LocalTime startTime = LocalTime.now();
 
@@ -58,7 +58,7 @@ public class Main {
                 rubiksCube.rotate(command);
 
                 FlatCubePrinter.printCommand(command);
-                RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO());
+                RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO().getRubiksCubeLayersDTO());
             }
         }
 

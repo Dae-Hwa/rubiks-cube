@@ -9,11 +9,11 @@ import java.time.temporal.ChronoUnit;
 public class RubiksCubePrinter {
     private static final String SPACE_TOP_AND_BOTTOM = "                ";
 
-    public static void printRubiksCube(RubiksCubeDTO rubiksCubeDTO) {
-        FlatCubePrinter.printFlatCube(rubiksCubeDTO.getTop(), SPACE_TOP_AND_BOTTOM, "");
+    public static void printRubiksCube(RubiksCubeLayersDTO rubiksCubeLayersDTO) {
+        FlatCubePrinter.printFlatCube(rubiksCubeLayersDTO.getTop(), SPACE_TOP_AND_BOTTOM, "");
         System.out.println();
-        FlatCubePrinter.printFlatCubes(rubiksCubeDTO.getMiddles());
-        FlatCubePrinter.printFlatCube(rubiksCubeDTO.getBottom(), SPACE_TOP_AND_BOTTOM, "");
+        FlatCubePrinter.printFlatCubes(rubiksCubeLayersDTO.getMiddles());
+        FlatCubePrinter.printFlatCube(rubiksCubeLayersDTO.getBottom(), SPACE_TOP_AND_BOTTOM, "");
         System.out.println();
     }
 

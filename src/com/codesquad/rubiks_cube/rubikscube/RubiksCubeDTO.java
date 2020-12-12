@@ -1,32 +1,16 @@
 package com.codesquad.rubiks_cube.rubikscube;
 
-import com.codesquad.rubiks_cube.flatcube.FlatCubeDTO;
-
-import java.util.List;
-
 public class RubiksCubeDTO {
-    private FlatCubeDTO top;
-    private FlatCubeDTO bottom;
-    private List<FlatCubeDTO> middles;
+    private RubiksCubeLayersDTO rubiksCubeLayersDTO;
     private int rotateCount;
 
-    public RubiksCubeDTO(FlatCubeDTO top, FlatCubeDTO bottom, List<FlatCubeDTO> middles, int rotateCount) {
-        this.top = top;
-        this.bottom = bottom;
-        this.middles = middles;
+    public RubiksCubeDTO(RubiksCubeLayersDTO rubiksCubeLayersDTO, int rotateCount) {
+        this.rubiksCubeLayersDTO = rubiksCubeLayersDTO;
         this.rotateCount = rotateCount;
     }
 
-    public FlatCubeDTO getTop() {
-        return top;
-    }
-
-    public FlatCubeDTO getBottom() {
-        return bottom;
-    }
-
-    public List<FlatCubeDTO> getMiddles() {
-        return middles;
+    public RubiksCubeLayersDTO getRubiksCubeLayersDTO() {
+        return rubiksCubeLayersDTO;
     }
 
     public int getRotateCount() {
