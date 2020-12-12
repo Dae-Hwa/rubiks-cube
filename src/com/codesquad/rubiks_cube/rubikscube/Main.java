@@ -7,9 +7,12 @@ import java.time.LocalTime;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     private static final int DEFAULT_REPEAT_NUMBER = 1;
+    private static final int SHUFFLE_MAX_NUM = 10;
+    private static final int SHUFFLE_MIN_NUM = 1;
 
     public static void main(String[] args) {
 
@@ -38,6 +41,15 @@ public class Main {
 
             if (command.equals("Q")) {
                 return true;
+            }
+
+            if (command.equals("S")) {
+                rubiksCube.shuffle(ThreadLocalRandom.current().nextInt(SHUFFLE_MIN_NUM, SHUFFLE_MAX_NUM));
+
+                FlatCubePrinter.printCommand(command);
+                RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO().getRubiksCubeLayersDTO());
+
+                continue;
             }
 
             command += !commandsQueue.isEmpty() && commandsQueue.peek().equals("'") ?

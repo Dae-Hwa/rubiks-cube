@@ -27,6 +27,14 @@ public class RubiksCube {
         return new RubiksCube(new RubiksCubeLayers(top, bottom, middles));
     }
 
+    public RubiksCube shuffle(int repeatCount) {
+        for (int i = 0; i < repeatCount; i++) {
+            RubiksCubeCommand.getRandomInstance().rotate(rubiksCubeLayers);
+        }
+
+        return this;
+    }
+
     public RubiksCube rotate(String command) {
         rotateCount++;
 

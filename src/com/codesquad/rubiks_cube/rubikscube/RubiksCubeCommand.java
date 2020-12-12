@@ -1,5 +1,7 @@
 package com.codesquad.rubiks_cube.rubikscube;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public enum RubiksCubeCommand {
     FrontClockWise("F") {
         @Override
@@ -102,5 +104,9 @@ public enum RubiksCubeCommand {
         }
 
         throw new IllegalArgumentException(command + "에 해당하는 명령어가 없습니다.");
+    }
+
+    public static RubiksCubeCommand getRandomInstance() {
+        return values()[ThreadLocalRandom.current().nextInt(values().length)];
     }
 }
