@@ -2,7 +2,7 @@ package com.codesquad.rubiks_cube.flatcube;
 
 import com.codesquad.rubiks_cube.wordpusher.Direction;
 
-public enum CubeCommand {
+public enum FlatCubeCommand {
     UpClockWise("U", BlockPosition.TOP_LEFT, Direction.LEFT),
     UpCounterClockWise("U'", BlockPosition.TOP_LEFT, Direction.RIGHT),
     RightClockWise("R", BlockPosition.TOP_RIGHT, Direction.LEFT),
@@ -18,16 +18,16 @@ public enum CubeCommand {
     private Direction direction;
 
 
-    CubeCommand(String command, BlockPosition startPosition, Direction direction) {
+    FlatCubeCommand(String command, BlockPosition startPosition, Direction direction) {
         this.command = command;
         this.startPosition = startPosition;
         this.direction = direction;
     }
 
-    public static CubeCommand getInstanceBy(String command) {
-        for (CubeCommand cubeCommand : values()) {
-            if (cubeCommand.command.equals(command)) {
-                return cubeCommand;
+    public static FlatCubeCommand getInstanceBy(String command) {
+        for (FlatCubeCommand flatCubeCommand : values()) {
+            if (flatCubeCommand.command.equals(command)) {
+                return flatCubeCommand;
             }
         }
 

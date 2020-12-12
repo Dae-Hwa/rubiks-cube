@@ -95,25 +95,25 @@ public class FlatCube {
     }
 
     public FlatCube push(String command) {
-        push(CubeCommand.getInstanceBy(command));
+        push(FlatCubeCommand.getInstanceBy(command));
 
         linkedCubes.getLeft();
 
         return this;
     }
 
-    private void push(CubeCommand cubeCommand) {
+    private void push(FlatCubeCommand flatCubeCommand) {
         Deque<String> deque = new ArrayDeque<>();
 
         for (int i = 0; i < CUBE_SIZE; i++) {
-            deque.offerLast(blocks[(i + cubeCommand.getStartPosition()) % blocks.length]);
+            deque.offerLast(blocks[(i + flatCubeCommand.getStartPosition()) % blocks.length]);
         }
 
-        Direction direction = cubeCommand.getDirection();
+        Direction direction = flatCubeCommand.getDirection();
         deque = new ArrayDeque<>(direction.push(deque));
 
         for (int i = 0; i < CUBE_SIZE; i++) {
-            blocks[(i + cubeCommand.getStartPosition()) % blocks.length] = deque.pollFirst();
+            blocks[(i + flatCubeCommand.getStartPosition()) % blocks.length] = deque.pollFirst();
         }
     }
 
