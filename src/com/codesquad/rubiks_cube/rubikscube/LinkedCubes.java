@@ -1,60 +1,31 @@
 package com.codesquad.rubiks_cube.rubikscube;
 
-import com.codesquad.rubiks_cube.flatcube.BlockPosition;
 import com.codesquad.rubiks_cube.flatcube.FlatCube;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codesquad.rubiks_cube.flatcube.BlockPosition.*;
+
 public class LinkedCubes {
     private final Map<LinkedCubePosition, LinkedCube> linkedCubes = new HashMap<>();
 
     public void rotateClockWise() {
-        String[] temp = getLeft().getBlocksStartAt(BlockPosition.TOP_RIGHT.VALUE);
+        String[] temp = getLeft().getBlocksStartAt(TOP_RIGHT);
 
-        getLeft().setBlocksStartAt(
-                BlockPosition.TOP_RIGHT.VALUE,
-                getBottom().getBlocksStartAt(BlockPosition.TOP_LEFT.VALUE)
-        );
-
-        getBottom().setBlocksStartAt(
-                BlockPosition.TOP_LEFT.VALUE,
-                getRight().getBlocksStartAt(BlockPosition.BOTTOM_LEFT.VALUE)
-        );
-
-        getRight().setBlocksStartAt(
-                BlockPosition.BOTTOM_LEFT.VALUE,
-                getTop().getBlocksStartAt(BlockPosition.BOTTOM_RIGHT.VALUE)
-        );
-
-        getTop().setBlocksStartAt(
-                BlockPosition.BOTTOM_RIGHT.VALUE,
-                temp
-        );
+        getLeft().setBlocksStartAt(TOP_RIGHT, getBottom().getBlocksStartAt(TOP_LEFT));
+        getBottom().setBlocksStartAt(TOP_LEFT, getRight().getBlocksStartAt(BOTTOM_LEFT));
+        getRight().setBlocksStartAt(BOTTOM_LEFT, getTop().getBlocksStartAt(BOTTOM_RIGHT));
+        getTop().setBlocksStartAt(BOTTOM_RIGHT, temp);
     }
 
     public void rotateCounterClockWise() {
-        String[] temp = getRight().getBlocksStartAt(BlockPosition.BOTTOM_LEFT.VALUE);
+        String[] temp = getRight().getBlocksStartAt(BOTTOM_LEFT);
 
-        getRight().setBlocksStartAt(
-                BlockPosition.BOTTOM_LEFT.VALUE,
-                getBottom().getBlocksStartAt(BlockPosition.TOP_LEFT.VALUE)
-        );
-
-        getBottom().setBlocksStartAt(
-                BlockPosition.TOP_LEFT.VALUE,
-                getLeft().getBlocksStartAt(BlockPosition.TOP_RIGHT.VALUE)
-        );
-
-        getLeft().setBlocksStartAt(
-                BlockPosition.TOP_RIGHT.VALUE,
-                getTop().getBlocksStartAt(BlockPosition.BOTTOM_RIGHT.VALUE)
-        );
-
-        getTop().setBlocksStartAt(
-                BlockPosition.BOTTOM_RIGHT.VALUE,
-                temp
-        );
+        getRight().setBlocksStartAt(BOTTOM_LEFT, getBottom().getBlocksStartAt(TOP_LEFT));
+        getBottom().setBlocksStartAt(TOP_LEFT, getLeft().getBlocksStartAt(TOP_RIGHT));
+        getLeft().setBlocksStartAt(TOP_RIGHT, getTop().getBlocksStartAt(BOTTOM_RIGHT));
+        getTop().setBlocksStartAt(BOTTOM_RIGHT, temp);
     }
 
     public LinkedCube getLeft() {
