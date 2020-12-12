@@ -37,36 +37,21 @@ public class Main {
         Queue<String> commandsQueue = new ArrayDeque<>(Arrays.asList(commands));
 
         while (!commandsQueue.isEmpty()) {
-            String command = commandsQueue.poll();
-
-            if (command.equals("Q")) {
+            if (commandsQueue.peek().equals("Q")) {
                 return true;
             }
 
-            if (command.equals("S")) {
-                rubiksCube.shuffle(ThreadLocalRandom.current().nextInt(SHUFFLE_MIN_NUM, SHUFFLE_MAX_NUM));
-
-                FlatCubePrinter.printCommand(command);
-                RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO().getRubiksCubeLayersDTO());
+            if (commandsQueue.peek().equals("S")) {
+                executeShuffle(rubiksCube);
 
                 continue;
             }
 
-            command += !commandsQueue.isEmpty() && commandsQueue.peek().equals("'") ?
-                    commandsQueue.poll() :
-                    "";
+            String command = getCommand(commandsQueue);
 
-            StringBuilder repeatNumber = new StringBuilder();
+            int repeatCount = getRepeatCount(commandsQueue);
 
-            while (!commandsQueue.isEmpty() && Utils.isNumber(commandsQueue.peek())) {
-                repeatNumber.append(commandsQueue.poll());
-            }
-
-            if (repeatNumber.length() == 0) {
-                repeatNumber.append(DEFAULT_REPEAT_NUMBER);
-            }
-
-            for (int i = 0; i < Integer.parseInt(repeatNumber.toString()); i++) {
+            for (int i = 0; i < repeatCount; i++) {
                 rubiksCube.rotate(command);
 
                 FlatCubePrinter.printCommand(command);
@@ -80,5 +65,32 @@ public class Main {
         }
 
         return false;
+    }
+
+    private static String getCommand(Queue<String> commandsQueue) {
+        String command = commandsQueue.poll();
+
+        return !commandsQueue.isEmpty() && commandsQueue.peek().equals("'") ?
+                command + commandsQueue.poll() :
+                command;
+    }
+
+    private static void executeShuffle(RubiksCube rubiksCube) {
+        rubiksCube.shuffle(ThreadLocalRandom.current().nextInt(SHUFFLE_MIN_NUM, SHUFFLE_MAX_NUM));
+
+        FlatCubePrinter.printCommand("S");
+        RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO().getRubiksCubeLayersDTO());
+    }
+
+    private static int getRepeatCount(Queue<String> commandsQueue) {
+        StringBuilder repeatCount = new StringBuilder();
+
+        while (!commandsQueue.isEmpty() && Utils.isNumber(commandsQueue.peek())) {
+            repeatCount.append(commandsQueue.poll());
+        }
+
+        return repeatCount.length() != 0 ?
+                Integer.parseInt(repeatCount.toString()) :
+                DEFAULT_REPEAT_NUMBER;
     }
 }
