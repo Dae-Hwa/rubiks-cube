@@ -1,8 +1,7 @@
 package com.codesquad.rubiks_cube.flatcube;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import com.codesquad.rubiks_cube.common.Utils;
+
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
@@ -18,7 +17,7 @@ public class Main {
         for (boolean isEnd = false; !isEnd; ) {
             FlatCubePrinter.printPrompt();
 
-            isEnd = executeCommands(flatCube, getInput().split(""));
+            isEnd = executeCommands(flatCube, Utils.getInput().split(""));
         }
 
         FlatCubePrinter.printEndMessage();
@@ -43,15 +42,5 @@ public class Main {
         }
 
         return false;
-    }
-
-    public static String getInput() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        try {
-            return br.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
