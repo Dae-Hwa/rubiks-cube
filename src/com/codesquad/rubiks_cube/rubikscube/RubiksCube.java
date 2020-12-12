@@ -3,11 +3,16 @@ package com.codesquad.rubiks_cube.rubikscube;
 import com.codesquad.rubiks_cube.flatcube.FlatCube;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RubiksCube {
+    private static final int SHUFFLE_MAX_NUM = 10;
+    private static final int SHUFFLE_MIN_NUM = 1;
+
     private RubiksCubeLayers rubiksCubeLayers;
     private RubiksCubeLayers originalRubiksCubeLayers;
     private int rotateCount;
+    private boolean isEnd;
 
     public RubiksCube(RubiksCubeLayers rubiksCubeLayers) {
         this.rubiksCubeLayers = rubiksCubeLayers;
@@ -29,6 +34,24 @@ public class RubiksCube {
         return new RubiksCube(new RubiksCubeLayers(top, bottom, middles));
     }
 
+    public RubiksCube executeCommand(String command) {
+        if (command.equals("Q")) {
+            isEnd = true;
+
+            return this;
+        }
+
+        if (command.equals("S")) {
+            shuffle(ThreadLocalRandom.current().nextInt(SHUFFLE_MIN_NUM, SHUFFLE_MAX_NUM));
+
+            return this;
+        }
+
+        rotate(command);
+
+        return this;
+    }
+
     public RubiksCube shuffle(int repeatCount) {
         for (int i = 0; i < repeatCount; i++) {
             RubiksCubeCommand.getRandomInstance().rotate(rubiksCubeLayers);
@@ -46,8 +69,12 @@ public class RubiksCube {
         return this;
     }
 
+    public boolean isEnd() {
+        return isEnd;
+    }
+
     public boolean isSolved() {
-        return rubiksCubeLayers.equals(originalRubiksCubeLayers);
+        return 0 < rotateCount && rubiksCubeLayers.equals(originalRubiksCubeLayers);
     }
 
     public RubiksCubeDTO toDTO() {
