@@ -72,6 +72,11 @@ public class Main {
                 FlatCubePrinter.printCommand(command);
                 RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO().getRubiksCubeLayersDTO());
             }
+
+            if (rubiksCube.isSolved()) {
+                System.out.println("축하합니다. 모든 면을 맞췄습니다.");
+                return true;
+            }
         }
 
         return false;

@@ -6,10 +6,12 @@ import java.util.*;
 
 public class RubiksCube {
     private RubiksCubeLayers rubiksCubeLayers;
+    private RubiksCubeLayers originalRubiksCubeLayers;
     private int rotateCount;
 
     public RubiksCube(RubiksCubeLayers rubiksCubeLayers) {
         this.rubiksCubeLayers = rubiksCubeLayers;
+        originalRubiksCubeLayers = RubiksCubeLayers.create(toDTO().getRubiksCubeLayersDTO());
     }
 
     public static RubiksCube create() {
@@ -42,6 +44,10 @@ public class RubiksCube {
                 .rotate(rubiksCubeLayers);
 
         return this;
+    }
+
+    public boolean isSolved() {
+        return rubiksCubeLayers.equals(originalRubiksCubeLayers);
     }
 
     public RubiksCubeDTO toDTO() {
