@@ -17,8 +17,10 @@ public class RubiksCubePrinter {
         System.out.println();
     }
 
-    public static void printEndMessage(int rotateCount, String elapsedTime) {
-
+    public static void printEndMessage(int rotateCount, String elapsedTime, boolean isSolved) {
+        if (isSolved) {
+            System.out.println("축하합니다. 모든 면을 맞췄습니다.");
+        }
 
         System.out.println("경과시간: " + elapsedTime);
         System.out.println("조작갯수: " + rotateCount);

@@ -24,12 +24,11 @@ public class Main {
             executeCommands(rubiksCube, Utils.getInput().split(""));
         }
 
-        if (!rubiksCube.isSolved()) {
-            RubiksCubePrinter.printEndMessage(rubiksCube.toDTO().getRotateCount(), Utils.measureElapsedTime(startTime, LocalTime.now()));
-            return;
-        }
-
-        System.out.println("축하합니다. 모든 면을 맞췄습니다.");
+        RubiksCubePrinter.printEndMessage(
+                rubiksCube.toDTO().getRotateCount(),
+                Utils.measureElapsedTime(startTime, LocalTime.now()),
+                rubiksCube.isSolved()
+        );
     }
 
     public static boolean executeCommands(RubiksCube rubiksCube, String[] commands) {
