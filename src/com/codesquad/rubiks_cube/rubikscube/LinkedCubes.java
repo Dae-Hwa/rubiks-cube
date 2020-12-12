@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LinkedCubes {
-    private final Map<String, LinkedCube> linkedCubes = new HashMap<>();
+    private final Map<LinkedCubePosition, LinkedCube> linkedCubes = new HashMap<>();
 
     public void rotateClockWise() {
         String[] temp = getLeft().getBlocksStartAt(BlockPosition.TOP_RIGHT.VALUE);
@@ -58,38 +58,38 @@ public class LinkedCubes {
     }
 
     public LinkedCube getLeft() {
-        return linkedCubes.get("LEFT");
+        return linkedCubes.get(LinkedCubePosition.LEFT);
     }
 
     public LinkedCubes setLeft(FlatCube flatCube, int startPosition) {
-        linkedCubes.put("LEFT", new LinkedCube(flatCube, startPosition));
+        linkedCubes.put(LinkedCubePosition.LEFT, new LinkedCube(flatCube, startPosition));
         return this;
     }
 
     public LinkedCube getRight() {
-        return linkedCubes.get("RIGHT");
+        return linkedCubes.get(LinkedCubePosition.RIGHT);
     }
 
     public LinkedCubes setRight(FlatCube flatCube, int startPosition) {
-        linkedCubes.put("RIGHT", new LinkedCube(flatCube, startPosition));
+        linkedCubes.put(LinkedCubePosition.RIGHT, new LinkedCube(flatCube, startPosition));
         return this;
     }
 
     public LinkedCube getTop() {
-        return linkedCubes.get("TOP");
+        return linkedCubes.get(LinkedCubePosition.TOP);
     }
 
     public LinkedCubes setTop(FlatCube flatCube, int startPosition) {
-        linkedCubes.put("TOP", new LinkedCube(flatCube, startPosition));
+        linkedCubes.put(LinkedCubePosition.TOP, new LinkedCube(flatCube, startPosition));
         return this;
     }
 
     public LinkedCube getBottom() {
-        return linkedCubes.get("BOTTOM");
+        return linkedCubes.get(LinkedCubePosition.BOTTOM);
     }
 
     public LinkedCubes setBottom(FlatCube flatCube, int startPosition) {
-        linkedCubes.put("BOTTOM", new LinkedCube(flatCube, startPosition));
+        linkedCubes.put(LinkedCubePosition.BOTTOM, new LinkedCube(flatCube, startPosition));
         return this;
     }
 }
