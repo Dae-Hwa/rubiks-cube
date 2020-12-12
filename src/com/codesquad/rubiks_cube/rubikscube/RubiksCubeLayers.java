@@ -28,6 +28,16 @@ public class RubiksCubeLayers {
         linkMiddle();
     }
 
+    public static RubiksCubeLayers create(RubiksCubeLayersDTO rubiksCubeLayersDTO) {
+        return new RubiksCubeLayers(
+                FlatCube.create(rubiksCubeLayersDTO.getTop()),
+                FlatCube.create(rubiksCubeLayersDTO.getBottom()),
+                rubiksCubeLayersDTO.getMiddles().stream()
+                        .map(FlatCube::create)
+                        .collect(Collectors.toList())
+        );
+    }
+
     private void linkTop() {
         LinkedCubes linkedCubes = new LinkedCubes();
 
