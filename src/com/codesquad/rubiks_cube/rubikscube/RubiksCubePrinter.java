@@ -2,10 +2,6 @@ package com.codesquad.rubiks_cube.rubikscube;
 
 import com.codesquad.rubiks_cube.flatcube.FlatCubePrinter;
 
-import java.time.Duration;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-
 public class RubiksCubePrinter {
     private static final String SPACE_TOP_AND_BOTTOM = "                ";
 
