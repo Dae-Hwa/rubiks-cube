@@ -5,6 +5,8 @@ import com.codesquad.rubiks_cube.flatcube.FlatCubePrinter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
@@ -18,13 +20,17 @@ public class Main {
 
         RubiksCubePrinter.printRubiksCube(rubiksCube.toDTO());
 
+        LocalTime startTime = LocalTime.now();
+
         for (boolean isEnd = false; !isEnd; ) {
             FlatCubePrinter.printPrompt();
 
             isEnd = executeCommands(rubiksCube, getInput().split(""));
         }
 
-        RubiksCubePrinter.printEndMessage(rubiksCube.toDTO().getRotateCount());
+        LocalTime endTime = LocalTime.now();
+
+        RubiksCubePrinter.printEndMessage(rubiksCube.toDTO().getRotateCount(), getElapsedTime(startTime, endTime));
     }
 
     public static boolean executeCommands(RubiksCube rubiksCube, String[] commands) {
@@ -60,6 +66,10 @@ public class Main {
         }
 
         return false;
+    }
+
+    private static String getElapsedTime(LocalTime startTime, LocalTime endTime) {
+        return String.format("%02d:%02d", ChronoUnit.MINUTES.between(startTime, endTime), ChronoUnit.SECONDS.between(startTime, endTime));
     }
 
     private static boolean isNumber(String str) {
