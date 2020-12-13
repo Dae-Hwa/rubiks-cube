@@ -3,16 +3,14 @@ package com.codesquad.rubiks_cube.rubikscube;
 import com.codesquad.rubiks_cube.flatcube.FlatCube;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class RubiksCube {
-    private static final int SHUFFLE_MAX_NUM = 10;
-    private static final int SHUFFLE_MIN_NUM = 1;
+    public static final int SHUFFLE_MAX_NUM = 10;
+    public static final int SHUFFLE_MIN_NUM = 1;
 
     private RubiksCubeLayers rubiksCubeLayers;
     private RubiksCubeLayers originalRubiksCubeLayers;
     private int rotateCount;
-    private boolean isEnd;
 
     public RubiksCube(RubiksCubeLayers rubiksCubeLayers) {
         this.rubiksCubeLayers = rubiksCubeLayers;
@@ -35,42 +33,19 @@ public class RubiksCube {
     }
 
     public RubiksCube executeCommand(String command) {
-        if (command.equals("Q")) {
-            isEnd = true;
+        RubiksCubeCommand rubiksCubeCommand = RubiksCubeCommand.getInstanceBy(command);
 
-            return this;
+        if (!rubiksCubeCommand.equals(RubiksCubeCommand.Quit) && !rubiksCubeCommand.equals(RubiksCubeCommand.Shuffle)) {
+            rotateCount++;
         }
 
-        if (command.equals("S")) {
-            shuffle(ThreadLocalRandom.current().nextInt(SHUFFLE_MIN_NUM, SHUFFLE_MAX_NUM));
-
-            return this;
-        }
-
-        rotate(command);
-
-        return this;
-    }
-
-    public RubiksCube shuffle(int repeatCount) {
-        for (int i = 0; i < repeatCount; i++) {
-            RubiksCubeCommand.getRandomInstance().execute(rubiksCubeLayers);
-        }
-
-        return this;
-    }
-
-    public RubiksCube rotate(String command) {
-        rotateCount++;
-
-        RubiksCubeCommand.getInstanceBy(command)
-                .execute(rubiksCubeLayers);
+        rubiksCubeCommand.execute(rubiksCubeLayers);
 
         return this;
     }
 
     public boolean isEnd() {
-        return isEnd;
+        return !rubiksCubeLayers.isCanRotate();
     }
 
     public boolean isSolved() {

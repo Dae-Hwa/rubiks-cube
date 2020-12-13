@@ -17,6 +17,7 @@ public class RubiksCubeLayers {
     private FlatCube top;
     private FlatCube bottom;
     private List<FlatCube> middles;
+    private boolean canRotate = true;
 
     public RubiksCubeLayers(FlatCube top, FlatCube bottom, List<FlatCube> middles) {
         this.top = top;
@@ -71,6 +72,14 @@ public class RubiksCubeLayers {
                     .setTop(top, (BlockPosition.TOP_RIGHT.VALUE - i * 2) % FlatCube.BLOCKS_SIZE)
                     .setBottom(bottom, (BlockPosition.BOTTOM_LEFT.VALUE + i * 2) % FlatCube.BLOCKS_SIZE);
         }
+    }
+
+    public boolean isCanRotate() {
+        return canRotate;
+    }
+
+    public void setCanRotate(boolean canRotate) {
+        this.canRotate = canRotate;
     }
 
     public FlatCube getTop() {
