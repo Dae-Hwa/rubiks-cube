@@ -18,16 +18,16 @@ public class RubiksCube {
     }
 
     public static RubiksCube create() {
-        FlatCube top = FlatCube.create("B");
+        FlatCube top = FlatCube.create(CubeColor.Black.VALUE);
 
-        FlatCube bottom = FlatCube.create("R");
+        FlatCube bottom = FlatCube.create(CubeColor.Red.VALUE);
 
         List<FlatCube> middles = new ArrayList<>();
 
-        middles.add(FlatCube.create("W"));
-        middles.add(FlatCube.create("O"));
-        middles.add(FlatCube.create("G"));
-        middles.add(FlatCube.create("Y"));
+        middles.add(FlatCube.create(CubeColor.White.VALUE));
+        middles.add(FlatCube.create(CubeColor.Orange.VALUE));
+        middles.add(FlatCube.create(CubeColor.Green.VALUE));
+        middles.add(FlatCube.create(CubeColor.Yellow.VALUE));
 
         return new RubiksCube(new RubiksCubeLayers(top, bottom, middles));
     }
