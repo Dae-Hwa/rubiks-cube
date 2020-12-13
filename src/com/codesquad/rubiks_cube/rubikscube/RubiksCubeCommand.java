@@ -3,92 +3,92 @@ package com.codesquad.rubiks_cube.rubikscube;
 import java.util.concurrent.ThreadLocalRandom;
 
 public enum RubiksCubeCommand {
-    FrontClockWise("F") {
+    FrontClockWiseRotation("F") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getFront()
                     .rotateClockWise();
         }
     },
-    FrontCounterClockWise("F'") {
+    FrontCounterClockWiseRotation("F'") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getFront()
                     .rotateCounterClockWise();
         }
     },
-    RightClockWise("R") {
+    RightClockWiseRotation("R") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getRight()
                     .rotateClockWise();
         }
     },
-    RightCounterClockWise("R'") {
+    RightCounterClockWiseRotation("R'") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getRight()
                     .rotateCounterClockWise();
         }
     },
-    UpClockWise("U") {
+    UpClockWiseRotation("U") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getTop()
                     .rotateClockWise();
         }
     },
-    UpCounterClockWise("U'") {
+    UpCounterClockWiseRotation("U'") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getTop()
                     .rotateCounterClockWise();
         }
     },
-    BackClockWise("B") {
+    BackClockWiseRotation("B") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getBack()
                     .rotateClockWise();
         }
     },
-    BackCounterClockWise("B'") {
+    BackCounterClockWiseRotation("B'") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getBack()
                     .rotateCounterClockWise();
         }
     },
-    LeftClockWise("L") {
+    LeftClockWiseRotation("L") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getLeft()
                     .rotateClockWise();
         }
     },
-    LeftCounterClockWise("L'") {
+    LeftCounterClockWiseRotation("L'") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getLeft()
                     .rotateCounterClockWise();
         }
     },
-    DownClockWise("D") {
+    DownClockWiseRotation("D") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getBottom()
                     .rotateClockWise();
         }
     },
-    DownCounterClockWise("D'") {
+    DownCounterClockWiseRotation("D'") {
         @Override
-        void rotate(RubiksCubeLayers rubiksCubeLayers) {
+        void execute(RubiksCubeLayers rubiksCubeLayers) {
             rubiksCubeLayers.getBottom()
                     .rotateCounterClockWise();
         }
     };
 
-    abstract void rotate(RubiksCubeLayers rubiksCubeLayers);
+    abstract void execute(RubiksCubeLayers rubiksCubeLayers);
 
     private String value;
 

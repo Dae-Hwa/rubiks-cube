@@ -54,7 +54,7 @@ public class RubiksCube {
 
     public RubiksCube shuffle(int repeatCount) {
         for (int i = 0; i < repeatCount; i++) {
-            RubiksCubeCommand.getRandomInstance().rotate(rubiksCubeLayers);
+            RubiksCubeCommand.getRandomInstance().execute(rubiksCubeLayers);
         }
 
         return this;
@@ -64,7 +64,7 @@ public class RubiksCube {
         rotateCount++;
 
         RubiksCubeCommand.getInstanceBy(command)
-                .rotate(rubiksCubeLayers);
+                .execute(rubiksCubeLayers);
 
         return this;
     }
